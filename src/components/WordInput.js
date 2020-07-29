@@ -27,7 +27,7 @@ class WordInput extends Component {
     
     render() {
         return (
-            <div>
+            <div className="input-field">
                 <form onSubmit={this.handleSubmit} >
                     <h3>Add a Word!</h3>
                     <p>
@@ -38,7 +38,7 @@ class WordInput extends Component {
                         <label>Image: </label> 
                         <input type='text' placeholder='image' name='img_url' value={this.state.img_url} onChange={this.handleOnChange} />
                     </p>
-                    <input type='submit' name='Sumbit' />
+                    <input type='submit' name='Submit' />
                 </form>
             </div>
         )
