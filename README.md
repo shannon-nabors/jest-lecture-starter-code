@@ -27,24 +27,6 @@ Testing frameworks provide 3 different things:
     2. Assert Libraries - provide functions to declare that some condition should be true (to determine whether your tests pass or fail)
     3. Mocking and Spying - allow you to replace some function or object with dummy data
 
-# Setting up Enzyme 
-Enzyme is a plugin, or an extension, that we'll be layering over Jest (developed by Airbnb)
-The purpose of Enzyme is to allow us to render only one component at a time (the piece we're testing) while ignoring the rest
-Enzyme is NOT INCLUDED with React, so we need to install it
-
-    - npm install --save-dev enzyme enzyme-adapter-react-16 react-test-renderer
-
-Before we can start using Enzyme, we also need to set up a src/setupTests.js file:
-
-// src/setupTests.js
-
-import Enzyme from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
-
-Enzyme.configure({ adapter: new Adapter() });
-
-//
-
 # Testing Pure Functions
 Pure functions are easy to test, because, given the same arguments, they should always return the same results
 
@@ -90,6 +72,24 @@ import manageWords from './manageWords'
                 expect(manageWords(undefined, action)).toEqual({ words: [] })
             })
         })
+        
+# Setting up Enzyme 
+Enzyme is a plugin, or an extension, that we'll be layering over Jest (developed by Airbnb)
+The purpose of Enzyme is to allow us to render only one component at a time (the piece we're testing) while ignoring the rest
+Enzyme is NOT INCLUDED with React, so we need to install it
+
+    - npm install --save-dev enzyme enzyme-adapter-react-16 react-test-renderer
+
+Before we can start using Enzyme, we also need to set up a src/setupTests.js file:
+
+// src/setupTests.js
+
+import Enzyme from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+
+Enzyme.configure({ adapter: new Adapter() });
+
+//
 
 # Testing Components
 Components become trickier to test because now we have to worry about state, props, etc. - all the things that make our components dynamic. This is where Enzyme comes in
@@ -133,19 +133,16 @@ If they match, your tests will pass; if they fail, then you know that you have u
 
     const mockStore = createStore(manageWords)
 
-    As before, I'll give my test mockProps so that it has a band to render...
+    As before, I'll give my test mockProps so that it has a word to render...
 
     let mockProps = {
         word: {
             id: 1,
             img_url: null,
-            word: 'hunden',
-            props: jest.fn() 
+            word: 'katten'
         }
     }
-
-    Some changes with Jest 24 (previous version was 23)...
-
+    
     Notice that I'm using renderer here to create an HTML 'tree' to create my snapshot
 
     describe ('Word', () => {
