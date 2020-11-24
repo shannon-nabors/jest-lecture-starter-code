@@ -68,8 +68,8 @@ import manageWords from './manageWords'
         * Jest provides a lot of other matchers, including toContain, toBeFalsy, toMatch(regexpOrString), and toThrow(error)
 
         describe ('manageWords', () => {
-            it ('initializes state.words to be an empty array', () => {
-                expect(manageWords(undefined, action)).toEqual({ words: [] })
+            it ('initializes state.words to be the starter words', () => {
+                expect(manageWords(undefined, action)).toEqual({ words: starterWords })
             })
         })
         
@@ -126,6 +126,7 @@ If they match, your tests will pass; if they fail, then you know that you have u
     Because my Word Component uses connect to connect with my store, I have to provide a mock store or my tests will fail
      This means that I need to import { createStore } from 'redux' and my reducer (manageWords) to initialize a store 
 
+    import React from 'react'
     import Word from './Word';
     import { createStore } from 'redux';
     import manageWords from '../reducers/manageWords';
